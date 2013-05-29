@@ -1,0 +1,23 @@
+<h1>My Expenses</h1>
+{% if expenses %}
+  <tr>
+    <td>Date</td>
+    <td>Store</td>
+    <td>Price</td>
+    <td>Payment Type</td>
+    <td>Category</td>
+  </tr>
+    {% for expense in expenses %}
+        <tr>
+          <td><a href="{% url 'expenses:detail' expense.id %}">{{ expense.date }}</a></td>
+          <td>{{ expense.store }}</td>
+          <td>{{expense.price}}</td>
+          <td>{{expense.payment_type}}</td>
+          <td>{{expense.category}}</td>
+        </tr>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No expenses logged.</p>
+{% endif %}
+
