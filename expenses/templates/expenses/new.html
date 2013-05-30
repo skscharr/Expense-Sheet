@@ -1,6 +1,4 @@
 <h1>New Expense</h1>
 
-<form action="/expenses/" method="post">{% csrf_token %}
-{{ new_expense.as_p }}
-<input type="submit" value="Save" />
-</form>
+{% load crispy_forms_tags %}
+{% crispy new_expense new_expense.helper %}

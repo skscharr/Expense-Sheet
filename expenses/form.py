@@ -1,17 +1,20 @@
 from expenses.models import Expense
-from django.utils import timezone
 from django.forms import ModelForm
-from django import forms
-import datetime
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
 class ExpenseForm(ModelForm):
   class Meta:
     model = Expense
 
-'''class ExpenseForm(forms.Form):
-  date = forms.DateField()
-  store = forms.CharField(min_length=1)
-  price = forms.DecimalField(max_digits=20, decimal_places=2, localize=True)
-  payment_type = forms.ModelChoiceField(queryset="Expenses")
-  category = forms.CharField(min_length=1)'''
+  def __init__(self, *args, **kwargs):
+    self.helper = FormHelper()
+    self.helper.form_id = 'id-expenseForm'
+    self.helper.form_class = 'blueForms'
+    self.helper.form_method = 'post'
+    self.helper.form_action = 'submit_expense'
+
+    self.helper.add_input(Submit('save', 'Save'))
+    super(ExpenseForm, self).__init__(*args, **kwargs)
+
   

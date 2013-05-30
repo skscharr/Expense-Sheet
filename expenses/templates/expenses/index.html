@@ -12,7 +12,7 @@
     <tr>
       <td>{{expense.date}}</td>
       <td>{{expense.store}}</td>
-      <td>{{expense.price}}</td>
+      <td>${{expense.price}}</td>
       <td>{{expense.payment_type}}</td>
       <td>{{expense.category}}</td>
     </tr>
@@ -23,6 +23,7 @@
 {% endif %}
 <p>
 
-<form action="/expenses/new/" method="get">{% csrf_token %}
-<input type="submit" value="Add Expense" />
+<form action="/expenses/new/" method="get">
+  {% csrf_token %}
+  <input type="submit" value="Add Expense" />
 </form>

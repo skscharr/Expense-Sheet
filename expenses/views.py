@@ -10,7 +10,7 @@ def index(request,template='expenses/index.html'):
 def new(request, template='expenses/new.html'):
   if request.method == 'POST':
     new_expense = ExpenseForm(request.POST)
-    if form.is_valid():
+    if new_expense.is_valid() and new_expense.clean():
       new_expense.save()
       return HttpResponseRedirect('/expenses/')
   else:
