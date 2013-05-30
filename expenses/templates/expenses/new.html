@@ -1,4 +1,6 @@
+<h1>New Expense</h1>
+
 <form action="/expenses/" method="post">{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="Submit" />
+{{ new_expense.as_p }}
+<input type="submit" value="Save" />
 </form>

@@ -15,5 +15,3 @@ class Expense(models.Model):
   payment_type = models.CharField(max_length=8, choices=PAYMENT_CHOICES, default='Cash')
   category = models.CharField(max_length=100)
 
-  def __unicode__(self):
-    return self.date

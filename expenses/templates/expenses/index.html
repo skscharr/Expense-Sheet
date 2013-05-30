@@ -1,23 +1,28 @@
 <h1>My Expenses</h1>
 {% if expenses %}
-  <tr>
-    <td>Date</td>
-    <td>Store</td>
-    <td>Price</td>
-    <td>Payment Type</td>
-    <td>Category</td>
-  </tr>
-    {% for expense in expenses %}
-        <tr>
-          <td><a href="{% url 'expenses:detail' expense.id %}">{{ expense.date }}</a></td>
-          <td>{{ expense.store }}</td>
-          <td>{{expense.price}}</td>
-          <td>{{expense.payment_type}}</td>
-          <td>{{expense.category}}</td>
-        </tr>
-    {% endfor %}
-    </ul>
+  <table border='1'>
+    <tr>
+      <td>Date</td>
+      <td>Store</td>
+      <td>Price</td>
+      <td>Payment Type</td>
+      <td>Category</td>
+    </tr>
+  {% for expense in expenses %}
+    <tr>
+      <td>{{expense.date}}</td>
+      <td>{{expense.store}}</td>
+      <td>{{expense.price}}</td>
+      <td>{{expense.payment_type}}</td>
+      <td>{{expense.category}}</td>
+    </tr>
+  {% endfor %}
+  </table>
 {% else %}
     <p>No expenses logged.</p>
 {% endif %}
+<p>
 
+<form action="/expenses/new/" method="get">{% csrf_token %}
+<input type="submit" value="Add Expense" />
+</form>

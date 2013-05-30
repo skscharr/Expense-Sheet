@@ -1,5 +1,7 @@
 from django.contrib import admin
 from expenses.models import Expense
+from django.utils import timezone
+import datetime
 
 class ExpenseAdmin(admin.ModelAdmin):
   fieldsets = [
@@ -10,7 +12,7 @@ class ExpenseAdmin(admin.ModelAdmin):
     ('Category', {'fields': ['category']}),
   ]
   search_fields = ['date', 'store', 'payment_type', 'category']
-  list_display = ['date']
+  list_display = ['date', 'store', 'payment_type', 'category']
   list_filter = ['date', 'store', 'payment_type', 'category']
   date_hierarchy = 'date'
 

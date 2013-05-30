@@ -1,20 +1,20 @@
-from django.http import HttpResponse, HttpRequest, QueryDict
-from django.core.urlresolvers import reverse
-from expenses.models import Expense
-from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from expenses.models import Expense
+from expenses.form import ExpenseForm
 
+def index(request,template='expenses/index.html'):
+  all_expenses = Expense.objects.all()
+  return render(request, template, {'all_expenses': all_expenses})
 
-def new(request, template='recipes/new.html'):
-  expense_date = Expense.POST['date']
-  expense_store = Expense.POST['store']
-  expense_price = Expense.POST['price']
-  expense_payment_type = Expense.POST['payment_type']
-  expense_category = Expense.POST['category']
+def new(request, template='expenses/new.html'):
+  if request.method == 'POST':
+    new_expense = ExpenseForm(request.POST)
+    if form.is_valid():
+      new_expense.save()
+      return HttpResponseRedirect('/expenses/')
+  else:
+    new_expense = ExpenseForm()
 
-  new_expense = Expense(date=expense_date, store=expense_store, price=expense_price, 
-    payment_type=expense_payment_type, category=expense_category)
-  new_expense.save()
-
-  return render(request, template)
+  return render(request, template, {'new_expense':new_expense})
 
