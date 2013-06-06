@@ -1,6 +1,6 @@
 <h1>My Expenses</h1>
 {% if expenses %}
-  <table border='1'>
+  <table border='1' class='table-striped'>
     <tr>
       <td>Date</td>
       <td>Store</td>
@@ -24,6 +24,6 @@
 <p>
 
 <form action="/expenses/new/" method="get">
-  {% csrf_token %}
   <input type="submit" value="Add Expense" />
 </form>
+
