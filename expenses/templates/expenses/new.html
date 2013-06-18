@@ -1,4 +1,13 @@
-<h1>New Expense</h1>
 
 {% load crispy_forms_tags %}
-{% crispy new_expense new_expense.helper %}
+{% load bootstrap_toolkit %}
+{% bootstrap_stylesheet_tag %}
+
+<div class="span7">
+{% crispy new_expense %}
+</div>
+
+
+
+
+

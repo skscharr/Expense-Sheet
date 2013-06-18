@@ -90,7 +90,7 @@ SECRET_KEY = 'gh!+)+&57ccit0vdn9m_9(g=b6*#51kn#c@mb0jf@mfj=$q0!v'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -128,7 +129,10 @@ INSTALLED_APPS = (
     'expenses',
     'crispy_forms',
     'floppyforms',
+    'bootstrap_toolkit',
 )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

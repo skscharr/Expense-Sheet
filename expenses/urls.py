@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 from django.views.generic import DetailView, ListView
 from expenses.models import Expense
 from django.utils import timezone
-from expenses import views
+from expenses.views import index, new, edit, delete
 
 urlpatterns = patterns('',
   url(r'^$',
@@ -13,4 +13,6 @@ urlpatterns = patterns('',
       template_name='expenses/index.html'),
     name='index'),
   url(r'^new/', 'expenses.views.new'),
+  url(r'(?P<expense_id>\d+)/$', 'expenses.views.edit'),
+  url(r'(?P<expense_id>\d+)/delete/$', 'expenses.views.delete'),
 )

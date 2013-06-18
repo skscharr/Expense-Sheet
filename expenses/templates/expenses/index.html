@@ -1,20 +1,39 @@
-<h1>My Expenses</h1>
+{% load humanize %}
+{% load bootstrap_toolkit %}
+{% bootstrap_stylesheet_tag %}
+
+<div class="span10">
+<h1 style="text-align:center">My Expenses</h1>
 {% if expenses %}
-  <table border='1' class='table-striped'>
+  <table class='table table-hover'>
     <tr>
-      <td>Date</td>
-      <td>Store</td>
-      <td>Price</td>
-      <td>Payment Type</td>
-      <td>Category</td>
+      <thead>
+        <th>Date</th>
+        <th>Store</th>
+        <th>Price</th>
+        <th>Payment Type</th>
+        <th>Category</th>
+        <th></th>
+        <th></th>
+      </thead>
     </tr>
   {% for expense in expenses %}
     <tr>
-      <td>{{expense.date}}</td>
-      <td>{{expense.store}}</td>
-      <td>${{expense.price}}</td>
-      <td>{{expense.payment_type}}</td>
-      <td>{{expense.category}}</td>
+      <tbody>
+        <td>{{expense.date}}</td>
+        <td>{{expense.store}}</td>
+        <td>${{expense.price|floatformat:"2"|intcomma}}</td>
+        <td>{{expense.payment_type}}</td>
+        <td>{{expense.category}}</td>
+        <td>
+          <form action='{{expense.id}}/' method='get'>
+            <input type="submit" value="Edit" class="btn">
+          </form></td>
+        <td>
+          <form action='{{expense.id}}/delete/' method='post'>{% csrf_token %}
+            <input type="submit" value="Delete" class="btn btn-danger">
+          </form></td>
+      </tbody>
     </tr>
   {% endfor %}
   </table>
@@ -23,7 +42,7 @@
 {% endif %}
 <p>
 
-<form action="/expenses/new/" method="get">
-  <input type="submit" value="Add Expense" />
+<form action="/expenses/new" method="get">
+  <input type="submit" value="Add Expense" class="btn btn-primary" style="margin-left:5px"/>
 </form>
-
+</div>
