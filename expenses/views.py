@@ -1,12 +1,11 @@
 from django.http import HttpResponseRedirect, HttpResponse
-from django.views.generic.edit import UpdateView, DeleteView
 from django.shortcuts import render
 from expenses.models import Expense
 from expenses.form import ExpenseForm
 
-def index(request,template='expenses/index.html'):
+def index(request, template='expenses/index.html'):
   all_expenses = Expense.objects.all()
-  return render(request, template, {'all_expenses': all_expenses})
+  return render(request, template)
 
 def new(request, template='expenses/new.html'):
   if request.method == 'POST':
@@ -19,15 +18,17 @@ def new(request, template='expenses/new.html'):
 
   return render(request, template, {'new_expense':new_expense})
 
-def edit(request, expense_id, template='expenses/new.html'):
+def edit(request, expense_id, template='expenses/edit.html'):
   expense = Expense.objects.get(id=expense_id)
   if request.method == 'POST':
-    form = ExpenseForm(request.post, instance=expense)
-    if form.is_valid and form.clean():
-      expense = form.save()
+    edit_expense = ExpenseForm(request.POST, instance=expense)
+    if edit_expense.is_valid and edit_expense.clean():
+      edit_expense.save()
       return HttpResponseRedirect('/expenses/')
-    else:
-      form = ExpenseForm(instance=expense)
+  else:
+    edit_expense = ExpenseForm(instance=expense)
+
+  return render(request, template, {'edit_expense':edit_expense})
 
 def delete(request, expense_id):
   if request.method == 'POST':

@@ -31,7 +31,7 @@
           </form></td>
         <td>
           <form action='{{expense.id}}/delete/' method='post'>{% csrf_token %}
-            <input type="submit" value="Delete" class="btn btn-danger">
+            <input type="submit" value="Delete" class="btn btn-danger" data-dismiss="alert">
           </form></td>
       </tbody>
     </tr>
@@ -40,8 +40,8 @@
 {% else %}
     <p>No expenses logged.</p>
 {% endif %}
-<p>
 
+<h3>Total: {{ expenses.price_sum }}</h3>
 <form action="/expenses/new" method="get">
   <input type="submit" value="Add Expense" class="btn btn-primary" style="margin-left:5px"/>
 </form>
