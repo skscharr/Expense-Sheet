@@ -19,7 +19,7 @@ class Expense(models.Model):
     return u'%s' % (self.date)
 
   #Expense.objects.aggregate(total_price = Sum('price'))
-  def _price_sum(self):
-    return self.objects.aggregate(total_price = Sum('price'))['total_price']
-
-  price_sum = property(_price_sum)
+  @property
+  def price_sum(self):
+    p_sum = self.objects.aggregate(total_price = Sum('price'))['total_price']
+    return self._p_sum

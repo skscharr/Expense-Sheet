@@ -1,9 +1,36 @@
+<!DOCTYPE html>
 {% load humanize %}
 {% load bootstrap_toolkit %}
-{% bootstrap_stylesheet_tag %}
+<html lang="en">
+<head>
+  <title>Expense Sheet</title>
+  {% bootstrap_stylesheet_tag %}
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  {% bootstrap_javascript_tag %}
+</head>
 
-<div class="span10">
-<h1 style="text-align:center">My Expenses</h1>
+<body>
+<div class='row-fluid'>
+
+<!-- Header/Navigation Bar-->
+<div class="navbar navbar-static-top">
+  <div class="navbar-inner">
+    <ul class="nav">
+      <li><h1>My Expenses</h1></li>
+      <li>
+        <form action="new/" method="get">
+          <input type="submit" value="Add Expense" data-toggle="modal" href="new/" data-target="#newExpense" class="btn btn-primary btn-small" style="margin-left:15px;margin-top:20px"/>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class='container-fluid'>
+<div class="span12" style="margin-left:0px">
+
+<!-- Expense Table -->
 {% if expenses %}
   <table class='table table-hover'>
     <tr>
@@ -13,7 +40,6 @@
         <th>Price</th>
         <th>Payment Type</th>
         <th>Category</th>
-        <th></th>
         <th></th>
       </thead>
     </tr>
@@ -26,13 +52,13 @@
         <td>{{expense.payment_type}}</td>
         <td>{{expense.category}}</td>
         <td>
-          <form action='{{expense.id}}/' method='get'>
-            <input type="submit" value="Edit" class="btn">
-          </form></td>
-        <td>
-          <form action='{{expense.id}}/delete/' method='post'>{% csrf_token %}
-            <input type="submit" value="Delete" class="btn btn-danger" data-dismiss="alert">
-          </form></td>
+          <ul class="inline">
+            <li><a href='{{expense.id}}/' class='btn btn-small' data-trigger='toggle' title="edit"><i class='icon-edit'></i></a></li>
+            <li><form action='{{expense.id}}/delete/' method='post'>{% csrf_token %}
+              <button class='btn btn-danger btn-small' title='delete'><i class='icon-trash icon-white'></i></button>
+            </form></li>
+          </ul>
+        </td>
       </tbody>
     </tr>
   {% endfor %}
@@ -40,9 +66,18 @@
 {% else %}
     <p>No expenses logged.</p>
 {% endif %}
-
-<h3>Total: {{ expenses.price_sum }}</h3>
-<form action="/expenses/new" method="get">
-  <input type="submit" value="Add Expense" class="btn btn-primary" style="margin-left:5px"/>
-</form>
 </div>
+<!-- Button to trigger modal -->
+
+</div>
+
+<!-- Modal -->
+<div id="newExpense" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="newExpenseLabel" aria-hidden="true">
+  <div class="modal-body">
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

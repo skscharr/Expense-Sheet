@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'floppyforms',
     'bootstrap_toolkit',
+    'chartit',
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap'

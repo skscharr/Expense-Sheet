@@ -1,0 +1,10 @@
+<!--
+need variable to define what the labels (x axis) will be (what is the )
+need variable to define what data (y axis) will be, summed cost per label chosen 
+  i.e. day/month, month/year, store, all
+-->
+
+{% load chartit %}
+{{ expensepivchart|load_charts:"container" }}
+
+<div id='container'></div>
