@@ -13,7 +13,7 @@ def new(request, template='expenses/new.html'):
     new_expense = ExpenseForm(request.POST)
     if new_expense.is_valid() and new_expense.clean():
       new_expense.save()
-      return HttpResponseRedirect('#')
+      return HttpResponseRedirect('/')     
   else:
     new_expense = ExpenseForm()
 

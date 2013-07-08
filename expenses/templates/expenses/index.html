@@ -34,6 +34,7 @@
 
 <!-- Expense Table -->
 {% if expenses %}
+<div id="expense-table">
   <table class='table table-hover'>
     <tr>
       <thead>
@@ -57,10 +58,7 @@
           <ul class="inline">
             <li><a href='{{expense.id}}/' class='btn btn-small' data-trigger='toggle' title="edit"><i class='icon-edit'></i></a></li>
             <li><button type="button" class="btn btn-small" data-toggle="modal" href="{{expense.id}}/" data-target="#editExpense"><i class='icon-edit'></i>(m)</button></li>
-            <li><form action='{{expense.id}}/delete/' method='post'>{% csrf_token %}
-              <button class='btn btn-danger btn-small' title='delete'><i class='icon-trash icon-white'></i></button>
-            </form></li>
-            <li><button type="button" class="btn btn-small btn-danger" data-toggle="modal" href="{{expense.id}}/delete/" data-target="#deleteExpense"><i class='icon-trash icon-white'></i>(m)</button></li>
+            <li><button type="button" class="btn btn-small btn-danger" data-toggle="modal" href="{{expense.id}}/delete/" data-target="#deleteExpense"><i class='icon-trash icon-white'></i></button></li>
           </ul>
         </td>
       </tbody>
@@ -69,7 +67,9 @@
   </table>
 {% else %}
     <p>No expenses logged.</p>
+</div>
 {% endif %}
+
 </div>
 </div>
 
@@ -93,7 +93,7 @@
   </div>
 </div>
 
-<!-- Delete Confirmation -->
+<!-- Delete Confirmation Modal -->
 <div id="deleteExpense" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteExpenseLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -108,13 +108,11 @@
   </div>
 </div>
 
-</div>
-
 <script>
 $('#deleteExpense').on('show', function() {
     var id = $(this).data('id'),
-        removeBtn = $(this).find('.danger');
-})
+    removeBtn = $(this).find('.danger');
+});
 
 $('.confirm-delete').on('click', function(e) {
     e.preventDefault();
@@ -131,5 +129,6 @@ $('#btnYes').click(function() {
 });
 </script>
 
+</div>
 </body>
 </html>
