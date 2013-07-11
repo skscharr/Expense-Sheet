@@ -1,0 +1,8 @@
+Django==1.5.1
+django-bootstrap-toolkit==2.12.1
+django-bootstrapped==0.1.1-dev
+django-chartit==0.1
+django-crispy-forms==1.2.8
+django-floppyforms==1.1
+requests==1.2.3
+wsgiref==0.1.2
