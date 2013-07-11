@@ -127,6 +127,19 @@ $('#btnYes').click(function() {
     $('[data-id='+id+']').remove();
     $('#deleteExpense').modal('hide');
 });
+
+$('#id-expenseForm').live('submit', function() {
+    $.ajax({ 
+      type: $(this).attr('method'), 
+      url: this.action, 
+      data: $(this).serialize(),
+      context: this,
+      success: function(data, status) {
+          $('#newExpense').html(data);
+      }
+  });
+  return false;
+});
 </script>
 
 </div>
