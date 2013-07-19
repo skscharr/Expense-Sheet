@@ -6,7 +6,8 @@ from expenses.form import ExpenseForm
 
 def index(request, template='expenses/index.html'):
   all_expenses = Expense.objects.all()
-  return render(request, template)
+  price_sum = Expense.objects.aggregate(total_price = Sum('price'))['total_price']
+  return render(request, template, {'expenses':all_expenses})
 
 def new(request, template='expenses/new.html'):
   if request.method == 'POST':

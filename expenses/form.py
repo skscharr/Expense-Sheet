@@ -18,7 +18,7 @@ class ExpenseForm(forms.ModelForm):
     self.helper.form_id = 'id-expenseForm'
     self.helper.form_method = 'POST'
     self.helper.form_class = 'form-horizontal'
-    self.helper.form_action = '#'
+    self.helper.form_action = ''
     self.helper.help_text_inline = True
 
     self.helper.layout = Layout(
@@ -31,7 +31,7 @@ class ExpenseForm(forms.ModelForm):
         'category', 
         ),
       FormActions(
-        Submit('save', 'Save'),
+        Submit('save', 'Save', css_class='btnSave'),
         Reset('reset', 'Reset'),
         )
       )
